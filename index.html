@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Health Co Strategy Intake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#34322c; --soft:#6c6660; --faint:#9d978c; --line:#d7d2c6;
+    --cream:#faf8f3; --paper:#fffdf8; --green:#8a9a78; --green-deep:#5c6b4c;
+    --green-wash:#eef0e7; --rule:#cfcabf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'EB Garamond',serif; background:var(--cream); color:var(--ink);
+    font-size:17px; line-height:1.7; -webkit-font-smoothing:antialiased;
+    padding:48px 20px;
+  }
+  .sheet{
+    max-width:680px; margin:0 auto; background:var(--paper);
+    border:0.5px solid var(--line); padding:0;
+  }
+  .masthead{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:26px 44px; border-bottom:0.5px solid var(--rule);
+  }
+  .masthead .series, .masthead .no{
+    font-family:'Montserrat',sans-serif; font-weight:400; text-transform:uppercase;
+    letter-spacing:0.3em; font-size:9px; color:var(--faint);
+  }
+  .masthead .brand{
+    font-family:'Montserrat',sans-serif; font-weight:400; text-transform:uppercase;
+    letter-spacing:0.4em; font-size:13px; color:var(--ink); padding-left:0.4em;
+  }
+  .hero{ padding:46px 44px 30px; text-align:center; border-bottom:0.5px solid var(--rule);}
+  .hero .kick{
+    font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.22em;
+    font-size:11px; color:var(--green-deep); margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Montserrat',sans-serif; font-weight:200; text-transform:uppercase;
+    letter-spacing:0.16em; font-size:34px; color:var(--ink); line-height:1.1;
+  }
+  .hero p{
+    font-style:italic; font-size:18px; color:var(--green-deep); margin-top:14px;
+    max-width:480px; margin-left:auto; margin-right:auto;
+  }
+  .body{ padding:36px 44px 44px;}
+  .intro{ font-size:17px; color:var(--soft); margin-bottom:26px; line-height:1.75;}
+  .section-label{
+    display:flex; align-items:baseline; gap:14px;
+    border-bottom:0.5px solid var(--rule); padding-bottom:8px; margin:34px 0 22px;
+  }
+  .section-label .rn{ font-style:italic; font-size:18px; color:var(--green);}
+  .section-label .tt{
+    font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.24em;
+    font-size:12px; color:var(--ink);
+  }
+  .field{ margin-bottom:22px;}
+  .field > label{
+    display:block; font-style:italic; font-size:17px; color:var(--ink); margin-bottom:9px;
+  }
+  .field .hint{ font-size:13px; color:var(--faint); font-style:normal; margin-left:6px;}
+  input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select{
+    width:100%; font-family:'EB Garamond',serif; font-size:16px; color:var(--ink);
+    background:var(--cream); border:0.5px solid var(--line); border-radius:0;
+    padding:11px 14px; outline:none; transition:border-color .15s, background .15s;
+  }
+  input:focus, textarea:focus, select:focus{ border-color:var(--green); background:#fff;}
+  textarea{ resize:vertical; min-height:84px; line-height:1.6;}
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .chips{ display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{
+    font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--soft); background:var(--cream);
+    border:0.5px solid var(--line); padding:9px 15px; cursor:pointer; user-select:none;
+    transition:all .15s;
+  }
+  .chip:hover{ border-color:var(--green);}
+  .chip.on{ background:var(--green); color:#fbfcf8; border-color:var(--green);}
+  .scale{ display:flex; gap:8px; flex-wrap:wrap;}
+  .scale .opt{
+    flex:1; min-width:64px; text-align:center; font-family:'Montserrat',sans-serif;
+    font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--soft);
+    background:var(--cream); border:0.5px solid var(--line); padding:12px 6px; cursor:pointer;
+    transition:all .15s;
+  }
+  .scale .opt:hover{ border-color:var(--green);}
+  .scale .opt.on{ background:var(--green); color:#fbfcf8; border-color:var(--green);}
+  .note{
+    background:var(--green-wash); border:0.5px solid var(--green); padding:18px 20px;
+    margin:30px 0 26px; font-style:italic; font-size:15px; color:var(--green-deep); line-height:1.65;
+  }
+  .submit-row{ text-align:center; margin-top:30px;}
+  button.send{
+    font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.24em;
+    font-size:12px; color:#fbfcf8; background:var(--green); border:none; border-radius:0;
+    padding:16px 46px; cursor:pointer; transition:background .15s;
+  }
+  button.send:hover{ background:var(--green-deep);}
+  button.send:disabled{ opacity:0.6; cursor:default;}
+  .footer{
+    text-align:center; padding:22px 44px; border-top:0.5px solid var(--rule);
+    font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.28em;
+    font-size:9px; color:var(--faint);
+  }
+  .thanks{ display:none; padding:70px 44px; text-align:center;}
+  .thanks h2{
+    font-family:'Montserrat',sans-serif; font-weight:200; text-transform:uppercase;
+    letter-spacing:0.2em; font-size:26px; color:var(--ink); margin-bottom:16px;
+  }
+  .thanks p{ font-style:italic; font-size:18px; color:var(--green-deep); max-width:440px; margin:0 auto;}
+  @media(max-width:560px){
+    .masthead,.hero,.body,.footer{padding-left:24px;padding-right:24px;}
+    .two{grid-template-columns:1fr;}
+    .hero h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet" id="sheet">
+  <div class="masthead">
+    <span class="series">Pre-Consult</span>
+    <span class="brand">The Health Co</span>
+    <span class="no">Strategy</span>
+  </div>
+
+  <div class="hero">
+    <div class="kick">Before we meet</div>
+    <h1>The Strategy<br>Intake</h1>
+    <p>A few focused questions so your consult is spent on strategy, not catch-up.</p>
+  </div>
+
+  <div class="body" id="formBody">
+    <p class="intro">The more context you share, the more tailored your strategy session will be. We'll walk in already understanding your goals, your challenges, and where the real opportunities are. Take your time with these; thoughtful answers make for a far more valuable consult.</p>
+
+    <div class="section-label"><span class="rn">1</span><span class="tt">Your Goals</span></div>
+    <div class="field">
+      <label>What are you hoping to achieve? <span class="hint">tap any</span></label>
+      <div class="chips" data-group="goals">
+        <span class="chip">Grow my audience</span><span class="chip">Build thought leadership</span>
+        <span class="chip">Generate leads / pipeline</span><span class="chip">Strengthen reputation</span>
+        <span class="chip">Attract talent</span><span class="chip">Support a launch</span>
+        <span class="chip">Consistency &amp; systems</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>If this engagement went beautifully, what would be different in 6 months?</label>
+      <textarea id="vision" placeholder="Paint the picture: the outcome that would make this obviously worth it."></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">2</span><span class="tt">Current Challenges</span></div>
+    <div class="field">
+      <label>What's getting in the way right now? <span class="hint">tap any</span></label>
+      <div class="chips" data-group="challenges">
+        <span class="chip">No time to post</span><span class="chip">Inconsistent</span>
+        <span class="chip">Unclear voice / message</span><span class="chip">Low engagement</span>
+        <span class="chip">No real strategy</span><span class="chip">Don't know what to post</span>
+        <span class="chip">Slow growth</span><span class="chip">No system or team</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Tell us more. What have you tried, and where does it break down?</label>
+      <textarea id="blockers" placeholder="Be candid. Knowing the real obstacle helps us actually solve it."></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">3</span><span class="tt">The Engagement</span></div>
+    <div class="field">
+      <label>Who is this strategy primarily for?</label>
+      <div class="chips" data-group="who">
+        <span class="chip">Executive / personal brand</span><span class="chip">Company / brand account</span>
+        <span class="chip">Both, in tandem</span>
+      </div>
+      <input type="text" id="whoOther" placeholder="Something else? Tell us here…" style="margin-top:10px;">
+    </div>
+    <div class="field">
+      <label>Where do you most want to grow? <span class="hint">tap any</span></label>
+      <div class="chips" data-group="platforms">
+        <span class="chip">LinkedIn</span><span class="chip">Instagram</span><span class="chip">X / Twitter</span>
+        <span class="chip">TikTok</span><span class="chip">YouTube</span><span class="chip">Threads</span>
+        <span class="chip">Not sure yet</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>What kind of support are you looking for? <span class="hint">tap any</span></label>
+      <div class="chips" data-group="scope">
+        <span class="chip">Strategy &amp; positioning</span><span class="chip">Content direction</span>
+        <span class="chip">Ghostwriting / voice</span><span class="chip">Posting &amp; management</span>
+        <span class="chip">Team training</span><span class="chip">Audit of what we have</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Who currently handles your social, if anyone?</label>
+      <input type="text" id="current" placeholder="In-house team, an agency, you personally, nobody yet…">
+    </div>
+
+    <div class="section-label"><span class="rn">4</span><span class="tt">About Your Business / Brand</span></div>
+    <div class="field">
+      <label>What is your biggest challenge right now when it comes to your brand or business?</label>
+      <textarea id="bizChallenge" placeholder="The thing that's most on your mind."></textarea>
+    </div>
+    <div class="field">
+      <label>What is the #1 thing you'd like our help with?</label>
+      <textarea id="bizHelp" placeholder="If we could only fix one thing, what should it be?"></textarea>
+    </div>
+    <div class="field">
+      <label>What have you already tried, and why do you feel it hasn't worked?</label>
+      <textarea id="bizTried" placeholder="Be candid. Knowing what's already been attempted helps us skip what won't work."></textarea>
+    </div>
+    <div class="field">
+      <label>Who do you admire in your space?</label>
+      <input type="text" id="bizAdmire" placeholder="Brands, leaders, or accounts you look up to.">
+    </div>
+    <div class="field">
+      <label>What industry or niche are you in?</label>
+      <input type="text" id="bizNiche" placeholder="e.g. wellness, fintech, hospitality…">
+    </div>
+    <div class="field">
+      <label>How would you describe your current brand in one sentence?</label>
+      <input type="text" id="bizOneLine" placeholder="One line, however you'd say it today.">
+    </div>
+
+    <div class="section-label"><span class="rn">5</span><span class="tt">About Your Content &amp; Visibility</span></div>
+    <div class="field">
+      <label>Are you currently creating content? If so, what type and how often?</label>
+      <textarea id="contentNow" placeholder="Format, platforms, cadence, or 'not yet' is a perfectly good answer."></textarea>
+    </div>
+    <div class="field">
+      <label>What's your biggest block when it comes to showing up consistently?</label>
+      <textarea id="contentBlock" placeholder="Time, clarity, confidence, systems: what gets in the way?"></textarea>
+    </div>
+    <div class="field">
+      <label>Have you worked with a brand strategist or content team before? What happened?</label>
+      <textarea id="contentPast" placeholder="What worked, what didn't, and how it ended."></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">6</span><span class="tt">About Goals &amp; Timeline</span></div>
+    <div class="field">
+      <label>Are you preparing for a launch, rebrand, campaign, or something else?</label>
+      <input type="text" id="goalEvent" placeholder="What's prompting this right now?">
+    </div>
+    <div class="field">
+      <label>Do you have a specific deadline or event driving this?</label>
+      <input type="text" id="goalDeadline" placeholder="A date, season, or milestone, if there is one.">
+    </div>
+    <div class="field">
+      <label>On a scale of 1 to 10, how ready are you to invest in your brand right now?</label>
+      <div class="scale" data-group="readiness">
+        <span class="opt">1</span><span class="opt">2</span><span class="opt">3</span><span class="opt">4</span><span class="opt">5</span>
+        <span class="opt">6</span><span class="opt">7</span><span class="opt">8</span><span class="opt">9</span><span class="opt">10</span>
+      </div>
+    </div>
+
+    <div class="section-label"><span class="rn">7</span><span class="tt">About Investment &amp; Decision Making</span></div>
+    <div class="field">
+      <label>Who else is involved in this decision?</label>
+      <input type="text" id="invWho" placeholder="Partners, a board, a spouse, just you…">
+    </div>
+    <div class="field">
+      <label>Have you set aside a budget for this?</label>
+      <div class="chips" data-group="budget">
+        <span class="chip">Under $5k</span><span class="chip">$5k to $10k</span>
+        <span class="chip">$10k to $25k</span><span class="chip">$25k to $50k</span>
+        <span class="chip">$50k+</span><span class="chip">Not sure yet</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>What would make you feel confident this was the right investment?</label>
+      <textarea id="invConfidence" placeholder="The proof, the partnership, the outcome. What would settle it for you?"></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">8</span><span class="tt">The Deeper Stuff</span></div>
+    <div class="field">
+      <label>What's the real cost of staying where you are right now?</label>
+      <textarea id="deepCost" placeholder="What does another year of the status quo actually cost you?"></textarea>
+    </div>
+    <div class="field">
+      <label>What's held you back from pursuing this sooner?</label>
+      <textarea id="deepHeldBack" placeholder="No wrong answer here."></textarea>
+    </div>
+    <div class="field">
+      <label>What do you want people to say about your brand when you're not in the room?</label>
+      <textarea id="deepReputation" placeholder="The reputation you're really building toward."></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">9</span><span class="tt">About Your Audience</span></div>
+    <div class="field">
+      <label>Who is your ideal client or customer?</label>
+      <textarea id="audIdeal" placeholder="The person you most want to reach."></textarea>
+    </div>
+    <div class="field">
+      <label>Do you currently have an engaged audience? If so, where and how large?</label>
+      <input type="text" id="audSize" placeholder="Platforms and rough numbers, if you have them.">
+    </div>
+    <div class="field">
+      <label>What do people come to you for most often?</label>
+      <textarea id="audKnownFor" placeholder="The thing you're already known and trusted for."></textarea>
+    </div>
+
+    <div class="section-label"><span class="rn">10</span><span class="tt">You &amp; The Company</span></div>
+    <div class="two">
+      <div class="field"><label>Your name</label><input type="text" id="name" placeholder="First &amp; last"></div>
+      <div class="field"><label>Title / role</label><input type="text" id="role" placeholder="e.g. CEO, Founder, CMO"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label>Company</label><input type="text" id="company" placeholder="Company name"></div>
+      <div class="field"><label>Website</label><input type="url" id="website" placeholder="https://"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label>Best email</label><input type="email" id="email" placeholder="you@company.com"></div>
+      <div class="field"><label>Phone <span class="hint">optional</span></label><input type="tel" id="phone" placeholder="Direct line"></div>
+    </div>
+
+    <div class="section-label"><span class="rn">11</span><span class="tt">Timing</span></div>
+    <div class="field">
+      <label>How soon are you looking to start?</label>
+      <div class="scale" data-group="timing">
+        <span class="opt">Exploring</span><span class="opt">Next quarter</span>
+        <span class="opt">Within a month</span><span class="opt">ASAP</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>How did you hear about The Health Co.?</label>
+      <input type="text" id="referral" placeholder="A referral, a post, a search; we'd love to know.">
+    </div>
+    <div class="field">
+      <label>Anything else that would help us prepare for the consult?</label>
+      <textarea id="extra" placeholder="Upcoming launches, brands you admire, decision-makers involved, anything on your mind."></textarea>
+    </div>
+
+    <div class="note">Once you submit, we'll review your answers and follow up to confirm your strategy consult. Everything you share stays confidential and is used only to prepare for our work together.</div>
+
+    <div class="submit-row">
+      <button class="send" id="sendBtn">Submit &amp; Book My Consult</button>
+    </div>
+  </div>
+
+  <div class="thanks" id="thanks">
+    <h2>Received</h2>
+    <p>Thank you. We've got everything we need to prepare. We'll be in touch shortly to lock in your strategy consult.</p>
+  </div>
+
+  <div class="footer">The Health Co &nbsp;·&nbsp; Strategy For Leaders Who Show Up</div>
+</div>
+
+<script>
+  // ============================================================
+  //  CONNECTED to Google Apps Script.
+  //  Submissions are saved to your Google Sheet AND trigger the
+  //  branded auto-reply email to the person who submitted.
+  //  Paste your Apps Script Web App URL between the quotes below
+  //  (you get it after deploying the script — see the checklist).
+  // ============================================================
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbyBfJZ68Xj8nb17NixcNTuWb82KR0wCATW1CeOtMTPEDaCIIGEN-UcooXAZWccZE_pG/exec";
+
+  document.querySelectorAll('.chip').forEach(c=>{
+    c.addEventListener('click',()=>c.classList.toggle('on'));
+  });
+  document.querySelectorAll('.scale').forEach(s=>{
+    s.querySelectorAll('.opt').forEach(o=>{
+      o.addEventListener('click',()=>{
+        s.querySelectorAll('.opt').forEach(x=>x.classList.remove('on'));
+        o.classList.add('on');
+      });
+    });
+  });
+
+  function collect(){
+    const val = id => (document.getElementById(id)?.value || "").trim();
+    const chosen = group => Array.from(
+      document.querySelectorAll('[data-group="'+group+'"] .chip.on, [data-group="'+group+'"] .opt.on')
+    ).map(el => el.textContent.trim()).join(", ");
+    return {
+      "Goals": chosen('goals'),
+      "Vision of success": val('vision'),
+      "Current challenges": chosen('challenges'),
+      "Challenge detail": val('blockers'),
+      "Strategy for": chosen('who'),
+      "Strategy for (other)": val('whoOther'),
+      "Priority platforms": chosen('platforms'),
+      "Support wanted": chosen('scope'),
+      "Who handles social now": val('current'),
+      "Biggest business challenge": val('bizChallenge'),
+      "#1 thing to help with": val('bizHelp'),
+      "Already tried": val('bizTried'),
+      "Who they admire": val('bizAdmire'),
+      "Industry / niche": val('bizNiche'),
+      "Brand in one sentence": val('bizOneLine'),
+      "Creating content now": val('contentNow'),
+      "Biggest consistency block": val('contentBlock'),
+      "Past strategist / team": val('contentPast'),
+      "Launch / rebrand / campaign": val('goalEvent'),
+      "Deadline or driving event": val('goalDeadline'),
+      "Readiness to invest (1-10)": chosen('readiness'),
+      "Others in the decision": val('invWho'),
+      "Budget set aside": chosen('budget'),
+      "What builds confidence": val('invConfidence'),
+      "Cost of staying": val('deepCost'),
+      "What's held them back": val('deepHeldBack'),
+      "Desired reputation": val('deepReputation'),
+      "Ideal client / customer": val('audIdeal'),
+      "Current audience size": val('audSize'),
+      "Known for": val('audKnownFor'),
+      "Name": val('name'),
+      "Title / role": val('role'),
+      "Company": val('company'),
+      "Website": val('website'),
+      "Email": val('email'),
+      "Phone": val('phone'),
+      "Timing": chosen('timing'),
+      "How they heard about us": val('referral'),
+      "Anything else": val('extra')
+    };
+  }
+
+  const btn = document.getElementById('sendBtn');
+
+  function showThanks(){
+    document.getElementById('formBody').style.display='none';
+    document.getElementById('thanks').style.display='block';
+    document.getElementById('sheet').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function showError(msg){
+    let e = document.getElementById('formErr');
+    if(!e){
+      e = document.createElement('div');
+      e.id = 'formErr';
+      e.style.cssText = "color:#9c3a3a;font-style:italic;font-size:14px;text-align:center;margin-top:14px;";
+      document.querySelector('.submit-row').appendChild(e);
+    }
+    e.textContent = msg;
+  }
+
+  btn.addEventListener('click', async ()=>{
+    const data = collect();
+    if(!data.Email && !data.Name){
+      showError("A name or email would help us reach you. Could you add one?");
+      return;
+    }
+    if(ENDPOINT.includes("PASTE_YOUR")){
+      showError("Almost ready! Add your Apps Script Web App URL in the code to start collecting responses.");
+      setTimeout(showThanks, 1400);
+      return;
+    }
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = "Sending…";
+    showError("");
+    try{
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data)
+      });
+      if(res.ok){ showThanks(); }
+      else{
+        btn.disabled = false; btn.textContent = original;
+        showError("Something went wrong sending that. Please try once more, or email us directly.");
+      }
+    }catch(err){
+      btn.disabled = false; btn.textContent = original;
+      showError("Looks like a connection hiccup. Please try again in a moment.");
+    }
+  });
+</script>
+</body>
+</html>
